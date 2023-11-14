@@ -2,7 +2,6 @@
 
 int main(int ac, char **av)
 {
-    int i;
     if(ac > 1)
     {
         for (int  i = 1; av[i]; i++)
