@@ -13,8 +13,6 @@ class PhoneBook
     public:
         void    addcontact();
         void    searchcontact();
-        void    printcontact();
-        // PhoneBook();
 };
 
 #endif
