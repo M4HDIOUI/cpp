@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/15 03:59:12 by omahdiou          #+#    #+#             */
+/*   Updated: 2023/11/15 21:46:43 by omahdiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 void    PhoneBook::addcontact() {
@@ -7,8 +19,7 @@ void    PhoneBook::addcontact() {
     std::string _nickname;
     std::string _phonenumber;
     std::string _darksecret;
-    std::cout << std::endl;
-    std::cout << "entre first name : ";
+    std::cout << std::endl << "entre first name : ";
     if (std::getline(std::cin, _firstname).eof())
         return ;
     while(_firstname.empty()) {
@@ -62,8 +73,7 @@ void    PhoneBook::addcontact() {
         count_of_contact = 0;
     contacts[count_of_contact] = contact;
     count_of_contact++;
-    std::cout << std::endl;
-    std::cout << "---------> contact added successfully <---------" << std::endl;
+    std::cout << std::endl << "---------> contact added successfully <---------" << std::endl;
     std::cout << std::endl;
 }
 
@@ -103,8 +113,7 @@ void    PhoneBook::searchcontact() {
                 return ;
         }
     if ((index[0] < 48 || index[0] > 55) && index[1] == '\0') {
-        std::cout << std::endl;
-        std::cout << "first name : ";
+        std::cout << std::endl << "first name : ";
         std::cout << contacts[index[0] - 48].getfirstname() << std::endl;
         std::cout << "last name : ";
         std::cout << contacts[index[0] - 48].getlastname() << std::endl;
