@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 17:24:33 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/18 18:09:41 by omahdiou         ###   ########.fr       */
+/*   Created: 2023/11/19 04:23:03 by omahdiou          #+#    #+#             */
+/*   Updated: 2023/11/19 04:23:41 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
 
-HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon) {
-    this->name = name;
-}
+#include <iostream>
+#include <string>
 
-HumanA::~HumanA() {
-    
-}
-
-void   HumanA::attack() 
+class Harl
 {
-    std::cout << this->name << " attacks with his " << weapon.getType() << std::endl;
-}
+    private:
+        void   debug(void);
+        void   info(void);
+        void   warning(void);
+        void   error(void);
+    public:
+        void    complain(std::string level);
+};
+
+#endif

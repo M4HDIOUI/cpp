@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 03:59:08 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/15 03:59:09 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/19 04:34:49 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av) {
     (void)av;
     if(ac != 1) {
         std::cout << "no argument needed" << std::endl;
-        return 0;
+        return 1;
     }
     while(1) {
         std::cout << "entre one of the folowing command : ADD - SEARCH - EXIT " << std::endl;

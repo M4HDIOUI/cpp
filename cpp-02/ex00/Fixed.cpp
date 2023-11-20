@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 17:24:33 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/18 18:09:41 by omahdiou         ###   ########.fr       */
+/*   Created: 2023/11/20 14:06:29 by omahdiou          #+#    #+#             */
+/*   Updated: 2023/11/20 14:20:10 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "Fixed.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon) {
-    this->name = name;
+Fixed::Fixed() {
 }
 
-HumanA::~HumanA() {
-    
+Fixed::Fixed(const Fixed &Fixed) {
 }
 
-void   HumanA::attack() 
-{
-    std::cout << this->name << " attacks with his " << weapon.getType() << std::endl;
+Fixed& Fixed::operator=(const Fixed &Fixed) {
+}
+
+Fixed::~Fixed() {
+}
+
+int     Fixed::getRawBits(void) const {
+    return this->FPV;
+}
+
+void    Fixed::setRawBits(int const raw) {
+    this->FPV = raw;
 }
