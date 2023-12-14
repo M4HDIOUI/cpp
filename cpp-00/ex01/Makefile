@@ -2,7 +2,7 @@ NAME = PhoneBook
 
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 HDRS = PhoneBook.hpp Contact.hpp
 

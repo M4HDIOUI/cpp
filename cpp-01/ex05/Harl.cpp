@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 01:25:44 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/19 01:55:30 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:43:07 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    Harl::complain(std::string level)
 {
-    typedef void (Harl::*harl)();
+    typedef void (Harl::*harl)(void);
 
     harl    Levels[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string str[4] = {"debug", "info", "warning", "error"};

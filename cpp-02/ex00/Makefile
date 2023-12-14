@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = Fixed
 
 CC = c++
 
@@ -15,7 +15,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
-%.o : .cpp $(HDR)
+%.o : %.cpp $(HDR)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :

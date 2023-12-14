@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:08:56 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/19 04:30:40 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:39:18 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int main(int ac, char **av) {
         std::cout << "no argument needed" << std::endl;
         return 1;
     }
-    Zombie *zombie = zombieHorde(5,"zombie");
-    for (int i = 0; i < 5; i++) {
+    int n = 5;
+    Zombie *zombie = zombieHorde(n,"zombie");
+    if (!zombie)
+        return 1;
+    for (int i = 0; i < n; i++) {
         zombie[i].announce();
     }
     delete[] zombie;

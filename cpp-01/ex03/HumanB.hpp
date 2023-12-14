@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:50:34 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/18 18:00:34 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:28:19 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB
     public:
         HumanB(std::string name);
         void        attack();
-        void        setWeapon(Weapon weapon);
+        void        setWeapon(Weapon &weapon);
 };
 
 #endif

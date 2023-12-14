@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:17:38 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/19 04:29:58 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:37:29 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int main (int ac , char **av) {
     if (ac != 4) {
         std::cout << "wrong arg" << std::endl;
         return 1;
+    }
+
+    if (!av[1][0] || !av[2][0] || !av[3][0])
+    {
+        std::cout << "empty string" << std::endl;
+        return (0);
     }
 
     std::string filename = av[1];

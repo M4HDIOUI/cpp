@@ -1,12 +1,12 @@
-NAME = Account
+NAME = ClapTrap
 
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = Account.cpp tests.cpp
+HDR = ClapTrap.hpp
 
-HDR = Account.hpp
+SRCS = main.cpp ClapTrap.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

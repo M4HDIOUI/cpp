@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 01:17:06 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/19 04:29:40 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/30 21:41:08 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int ac, char **av) {
     (void)av;
     if (ac != 1) {
-        std::cout << "wrong arg" << std::endl;
+        std::cerr << "wrong arg" << std::endl;
         return 1;
     }
     Harl harl;

@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 03:59:12 by omahdiou          #+#    #+#             */
-/*   Updated: 2023/11/15 21:46:43 by omahdiou         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:37:47 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void    PhoneBook::searchcontact() {
     std::string index;
     std::cout << std::endl << "|     index|first name| last name|  nickname|" << std::endl;
 
-     while (++i < 8) {
+     while (++i < 8 && contacts[i].getfirstname() != "") {
         std::cout << "|         " << i << "|";
         std::cout << printcontact(contacts[i].getfirstname());
         std::cout << printcontact(contacts[i].getlastname());
@@ -106,35 +106,25 @@ void    PhoneBook::searchcontact() {
     std::cout << "entre contact index (between 0 and 7) : ";
     if (std::getline(std::cin, index).eof())
         return ;
-        while(index.empty() && (index[0] < 48 || index[0] > 55) && index[1] == '\0') {
-            std::cout << "index can't be empty" << std::endl;
-            std::cout << "entre contact index : ";
-            if (std::getline(std::cin, index).eof())
-                return ;
-        }
-    if ((index[0] < 48 || index[0] > 55) && index[1] == '\0') {
-        std::cout << std::endl << "first name : ";
-        std::cout << contacts[index[0] - 48].getfirstname() << std::endl;
-        std::cout << "last name : ";
-        std::cout << contacts[index[0] - 48].getlastname() << std::endl;
-        std::cout << "nickname : ";
-        std::cout << contacts[index[0] - 48].getnickname() << std::endl;
-        std::cout << "phone number : ";
-        std::cout << contacts[index[0] - 48].getphonenumber() << std::endl;
-        std::cout << "dark secret : ";
-        std::cout << contacts[index[0] - 48].getdarksecret() << std::endl;
-        std::cout << std::endl;
-    }
-    else {
-        std::cout << "index must be between 0 and 7" << std::endl;
+    while(index.empty()) {
+        std::cout << "index can't be empty" << std::endl;
         std::cout << "entre contact index : ";
         if (std::getline(std::cin, index).eof())
             return ;
-        while(index.empty()) {
-            std::cout << "index can't be empty" << std::endl;
-            std::cout << "entre contact index : ";
-            if (std::getline(std::cin, index).eof())
-                return ;
-        }
     }
+    (index.length() == 1) ? i = index[0] - '0' : i = -1;
+    if (i < 0 || i > 7) {
+        std::cout << "Invalid index" << std::endl;
+        return ;
+    }
+    if (contacts[i].getfirstname() == "") {
+        std::cout << "No contact found" << std::endl;
+        return ;
+    }
+    std::cout << std::endl << "first name : " << contacts[i].getfirstname() << std::endl;
+    std::cout << "last name : " << contacts[i].getlastname() << std::endl;
+    std::cout << "nickname : " << contacts[i].getnickname() << std::endl;
+    std::cout << "phone number : " << contacts[i].getphonenumber() << std::endl;
+    std::cout << "dark secret : " << contacts[i].getdarksecret() << std::endl;
+    std::cout << std::endl;
 }

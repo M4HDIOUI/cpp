@@ -6,8 +6,6 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC = main.cpp
 
-HDR = header.hpp
-
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
@@ -15,7 +13,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o : %.cpp $(HDR)
+%.o : %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
