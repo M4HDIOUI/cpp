@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:38:01 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:38:02 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:20:58 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 {
-    this->setName("default");
     this->setSignGrade(150);
     this->setExecGrade(150);
     this->setIsSigned(false);
@@ -22,7 +21,6 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 {
-    this->setName("ShrubberyCreationForm");
     this->setSignGrade(145);
     this->setExecGrade(137);
     this->setIsSigned(false);
@@ -38,7 +36,6 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
     if (this != &instance)
     {
-        this->setName(instance.getName());
         this->setSignGrade(instance.getSignGrade());
         this->setExecGrade(instance.getExecGrade());
         this->setIsSigned(instance.getIsSigned());
@@ -77,19 +74,10 @@ void ShrubberyCreationForm::writeTree() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    GradeTooLowException low;
-    FormNotSignedException notSigned;
-    try
-    {
         if (this->getIsSigned() == false)
-            throw notSigned;
+            throw FormNotSignedException();
         else if (executor.getGrade() > this->getExecGrade())
-            throw low;
+            throw GradeTooLowException();
         else
             this->writeTree();
-    }
-    catch(const std::exception& e)
-    {
-        throw ;
-    }
 }

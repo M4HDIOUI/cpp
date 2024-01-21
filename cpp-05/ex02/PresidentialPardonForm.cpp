@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:20:31 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:29:03 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:19:37 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 PresidentialPardonForm::PresidentialPardonForm()
 {
-    this->setName("default");
     this->setSignGrade(150);
     this->setExecGrade(150);
     this->setIsSigned(false);
@@ -22,7 +21,6 @@ PresidentialPardonForm::PresidentialPardonForm()
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
 {
-    this->setName("PresidentialPardonForm");
     this->setSignGrade(25);
     this->setExecGrade(5);
     this->setIsSigned(false);
@@ -38,7 +36,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 {
     if (this != &instance)
     {
-        this->setName(instance.getName());
         this->setSignGrade(instance.getSignGrade());
         this->setExecGrade(instance.getExecGrade());
         this->setIsSigned(instance.getIsSigned());
@@ -57,19 +54,10 @@ std::string PresidentialPardonForm::getTarget() const
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    GradeTooLowException low;
-    FormNotSignedException notSigned;
-    try
-    {
-        if (executor.getGrade() > this->getExecGrade())
-            throw low;
-        else if (!this->getIsSigned())
-            throw notSigned;
-        else
-            std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        throw ;
-    }
+    if (executor.getGrade() > this->getExecGrade())
+        throw GradeTooLowException();
+    else if (!this->getIsSigned())
+        throw GradeTooLowException();
+    else
+        std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
 }

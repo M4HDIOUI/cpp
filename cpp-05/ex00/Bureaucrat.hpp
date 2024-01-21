@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:08:24 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/13 05:30:37 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 02:25:24 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Bureaucrat
 {
     private:
-        std::string _name;
+        const std::string _name;
         int grade;
     public:
         Bureaucrat();

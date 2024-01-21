@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:13:26 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/10 01:32:27 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 03:36:34 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Bureaucrat;
 class Form
 {
     private:
-        std::string _name;
+        const std::string _name;
         bool _is_signed;
         int _sign_grade;
         int _exec_grade;
@@ -36,6 +36,7 @@ class Form
         bool getIsSigned() const;
         int getSignGrade() const;
         int getExecGrade() const;
+        void setIsSigned(bool is_signed);
         void beSigned(Bureaucrat &bureaucrat);
 
         class GradeTooHighException : public std::exception

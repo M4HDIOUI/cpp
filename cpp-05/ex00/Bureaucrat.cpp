@@ -6,44 +6,31 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:25:13 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/13 05:21:14 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 02:41:52 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _name("default")
 {
     std::cout << "Bureaucrat default constructor called" << std::endl;
-    _name = "default";
     grade = 150;
 }
 
-Bureaucrat::Bureaucrat(std::string const name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     std::cout << "Bureaucrat constructor called" << std::endl;
-    _name = name;
-    GradeTooHighException high;
-    GradeTooLowException low;
-    try
+    if (grade < 1)
     {
-        if (grade < 1)
-        {
-            grade = 1;
-            throw high;
-        }
-        else if (grade > 150)
-        {
-            grade = 150;
-            throw low;
-        }
-        else
-            this->grade = grade;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (grade > 150)
     {
-        std::cerr << e.what() << std::endl;
+        throw GradeTooLowException();
     }
+    else
+        this->grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &instance)
@@ -55,7 +42,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &instance)
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &instance)
 {
     std::cout << "Bureaucrat assignation operator called" << std::endl;
-    this->_name = instance.getName();
     this->grade = instance.getGrade();
     return *this;
 }
@@ -78,7 +64,7 @@ int Bureaucrat::getGrade() const
 void Bureaucrat::incrementGrade()
 {
     if (grade - 1 < 1)
-        throw Bureaucrat::GradeTooHighException();
+        throw GradeTooHighException();
     else
         grade--;
 }
@@ -86,7 +72,7 @@ void Bureaucrat::incrementGrade()
 void Bureaucrat::decrementGrade()
 {
     if (grade + 1 > 150)
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else
         grade++;
 }
@@ -103,6 +89,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &outputStream, Bureaucrat const &instance)
 {
-    outputStream << instance.getName() << ", bureaucrat grade " << instance.getGrade() << std::endl;
+    outputStream << instance.getName() << " grade " << instance.getGrade() << std::endl;
     return outputStream;
 }

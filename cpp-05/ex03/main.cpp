@@ -5,26 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 18:29:58 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/20 02:44:04 by omahdiou         ###   ########.fr       */
+/*   Created: 2024/01/20 21:27:45 by omahdiou          #+#    #+#             */
+/*   Updated: 2024/01/20 21:33:32 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "Intern.hpp"
 
-int main() {
-    try
-    {
-        Bureaucrat b("bureaucrat", 8);
-        std::cout << b;
-        b.incrementGrade();
-        std::cout << b;
-        b.decrementGrade();
-        std::cout << b;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    return 0;
+int main()
+{
+    
 }

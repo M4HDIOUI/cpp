@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:31:57 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:31:58 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:20:22 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 RobotomyRequestForm::RobotomyRequestForm()
 {
-    this->setName("default");
     this->setSignGrade(150);
     this->setExecGrade(150);
     this->setIsSigned(false);
@@ -22,7 +21,6 @@ RobotomyRequestForm::RobotomyRequestForm()
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
 {
-    this->setName("RobotomyRequestForm");
     this->setSignGrade(72);
     this->setExecGrade(45);
     this->setIsSigned(false);
@@ -38,7 +36,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &i
 {
     if (this != &instance)
     {
-        this->setName(instance.getName());
         this->setSignGrade(instance.getSignGrade());
         this->setExecGrade(instance.getExecGrade());
         this->setIsSigned(instance.getIsSigned());
@@ -57,22 +54,13 @@ std::string RobotomyRequestForm::getTarget() const
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-    GradeTooLowException low;
-    FormNotSignedException notSigned;
-    try
+    if (this->getIsSigned() == false)
+        throw FormNotSignedException();
+    else if (executor.getGrade() > this->getExecGrade())
+        throw GradeTooLowException();
+    else
     {
-        if (this->getIsSigned() == false)
-            throw notSigned;
-        else if (executor.getGrade() > this->getExecGrade())
-            throw low;
-        else
-        {
-            std::cout << "Drilllll... whirrrr... zzzzzzz... " << std::endl << this->_target 
-            << " has been robotomized successfully 50% of the time." << std::endl;
-        }
-    }
-    catch(const std::exception& e)
-    {
-        throw ;
+        std::cout << "Drilllll... whirrrr... zzzzzzz... " << std::endl << this->_target 
+        << " has been robotomized successfully 50% of the time." << std::endl;
     }
 }

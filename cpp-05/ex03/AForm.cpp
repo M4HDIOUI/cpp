@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:18:36 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:18:53 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:23:51 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,48 +22,33 @@ AForm::AForm()
 
 AForm::AForm(std::string name, bool is_signed, int sign_grade, int exec_grade)
 {
-    GradeTooHighException high;
-    GradeTooLowException low;
     _name = name;
     _is_signed = is_signed;
-    try
+    if (sign_grade < 1)
     {
-        if (sign_grade < 1)
-        {
-            _sign_grade = 1;
-            throw high;
-        }
-        else if (sign_grade > 150)
-        {
-            _sign_grade = 150;
-            throw low;
-        }
-        else
-            _sign_grade = sign_grade;
+        _sign_grade = 1;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (sign_grade > 150)
     {
-        throw;
+        _sign_grade = 150;
+        throw GradeTooLowException();
     }
-    try
+    else
+        _sign_grade = sign_grade;
+
+    if (exec_grade < 1)
     {
-        if (exec_grade < 1)
-        {
-            _exec_grade = 1;
-            throw high;
-        }
-        else if (exec_grade > 150)
-        {
-            _exec_grade = 150;
-            throw low;
-        }
-        else
-            _exec_grade = exec_grade;
+        _exec_grade = 1;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (exec_grade > 150)
     {
-        throw;
+        _exec_grade = 150;
+        throw GradeTooLowException();
     }
+    else
+        _exec_grade = exec_grade;
 }
 
 AForm::AForm(const AForm &instance)
@@ -104,27 +89,17 @@ int AForm::getExecGrade() const
 
 void AForm::beSigned(Bureaucrat &bureaucrat)
 {
-    GradeTooHighException high;
-    GradeTooLowException low;
-    
     if (_is_signed == true)
     {
         std::cout << "Form is already signed" << std::endl;
         return;
     }
-    try
-    {
-        if (bureaucrat.getGrade() > this->_sign_grade)
-            throw low;
-        else if (bureaucrat.getGrade() < 1)
-            throw high;
-        else
-            this->_is_signed = true;
-    }
-    catch(const std::exception& e)
-    {
-        throw;
-    }
+    if (bureaucrat.getGrade() > this->_sign_grade)
+        throw GradeTooLowException();
+    else if (bureaucrat.getGrade() < 1)
+        throw GradeTooHighException();
+    else
+        this->_is_signed = true;
 }
 
 const char* AForm::GradeTooHighException::what() const throw()

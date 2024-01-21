@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:25:13 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/10 01:10:40 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:24:42 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,18 @@ Bureaucrat::Bureaucrat(std::string const name, int grade)
 {
     std::cout << "Bureaucrat constructor called" << std::endl;
     _name = name;
-    GradeTooHighException high;
-    GradeTooLowException low;
-    try
+    if (grade < 1)
     {
-        if (grade < 1)
-        {
-            grade = 1;
-            throw high;
-        }
-        else if (grade > 150)
-        {
-            grade = 150;
-            throw low;
-        }
-        else
-            this->grade = grade;
+        grade = 1;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (grade > 150)
     {
-        std::cerr << e.what() << std::endl;
+        grade = 150;
+        throw GradeTooLowException();
     }
+    else
+        this->grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &instance)

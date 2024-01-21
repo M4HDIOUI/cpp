@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 11:48:13 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/16 11:48:14 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:27:32 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,12 @@ void ShrubberyCreationForm::writeTree() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    GradeTooLowException low;
-    FormNotSignedException notSigned;
-    try
-    {
         if (this->getIsSigned() == false)
-            throw notSigned;
+            throw FormNotSignedException();
         else if (executor.getGrade() > this->getExecGrade())
-            throw low;
+            throw GradeTooLowException();
         else
             this->writeTree();
-    }
-    catch(const std::exception& e)
-    {
-        throw ;
-    }
 }
 
 AForm *ShrubberyCreationForm::create(std::string target, std::string name)

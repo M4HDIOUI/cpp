@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:20:31 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/16 11:57:36 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:25:54 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,12 @@ std::string PresidentialPardonForm::getTarget() const
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    GradeTooLowException low;
-    FormNotSignedException notSigned;
-    try
-    {
-        if (executor.getGrade() > this->getExecGrade())
-            throw low;
-        else if (!this->getIsSigned())
-            throw notSigned;
-        else
-            std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        throw ;
-    }
+    if (executor.getGrade() > this->getExecGrade())
+        throw GradeTooLowException();
+    else if (!this->getIsSigned())
+        throw FormNotSignedException();
+    else
+        std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
 }
 
 AForm* PresidentialPardonForm::create(std::string target, std::string name)

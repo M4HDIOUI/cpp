@@ -6,63 +6,42 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:18:36 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:19:25 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/20 03:36:49 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form()
+Form::Form() : _name("default")
 {
-    _name = "default";
     _sign_grade = 150;
     _exec_grade = 150;
     _is_signed = false;
 }
 
-Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade)
+Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade) : _name(name)
 {
-    GradeTooHighException high;
-    GradeTooLowException low;
-    _name = name;
-    try
+    if (sign_grade < 1)
     {
-        if (sign_grade < 1)
-        {
-            _sign_grade = 1;
-            throw high;
-        }
-        else if (sign_grade > 150)
-        {
-            _sign_grade = 150;
-            throw low;
-        }
-        else
-            _sign_grade = sign_grade;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (sign_grade > 150)
     {
-        throw;
+        throw GradeTooLowException();
     }
-    try
+    else
+        _sign_grade = sign_grade;
+
+    if (exec_grade < 1)
     {
-        if (exec_grade < 1)
-        {
-            _exec_grade = 1;
-            throw high;
-        }
-        else if (exec_grade > 150)
-        {
-            _exec_grade = 150;
-            throw low;
-        }
-        else
-            _exec_grade = exec_grade;
+        throw GradeTooHighException();
     }
-    catch(const std::exception& e)
+    else if (exec_grade > 150)
     {
-        throw;
+        throw GradeTooLowException();
     }
+    else
+        _exec_grade = exec_grade;
 }
 
 Form::Form(const Form &instance)
@@ -72,7 +51,6 @@ Form::Form(const Form &instance)
 
 Form &Form::operator=(const Form &instance)
 {
-    this->_name = instance.getName();
     this->_sign_grade = instance.getSignGrade();
     this->_exec_grade = instance.getExecGrade();
     this->_is_signed = instance.getIsSigned();
@@ -103,29 +81,24 @@ int Form::getExecGrade() const
     return this->_exec_grade;
 }
 
+void Form::setIsSigned(bool is_signed)
+{
+    this->_is_signed = is_signed;
+}
+
 void Form::beSigned(Bureaucrat &bureaucrat)
 {
-    GradeTooHighException high;
-    GradeTooLowException low;
-    
     if (_is_signed == true)
     {
         std::cout << "Form is already signed" << std::endl;
         return;
     }
-    try
-    {
-        if (bureaucrat.getGrade() > this->_sign_grade)
-            throw low;
-        else if (bureaucrat.getGrade() < 1)
-            throw high;
-        else
-            this->_is_signed = true;
-    }
-    catch(const std::exception& e)
-    {
-        throw;
-    }
+    if (bureaucrat.getGrade() > this->_sign_grade)
+        throw GradeTooLowException();
+    else if (bureaucrat.getGrade() < 1)
+        throw GradeTooHighException();
+    else
+        this->_is_signed = true;
 }
 
 const char* Form::GradeTooHighException::what() const throw()
