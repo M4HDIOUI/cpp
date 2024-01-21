@@ -4,9 +4,9 @@ cc = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = Form.hpp
+HDR = AForm.hpp Intern.hpp
 
-SRC = Form.cpp Bureaucrat.cpp main.cpp \
+SRC = AForm.cpp Bureaucrat.cpp main.cpp \
 	PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp \
 	Intern.cpp
 

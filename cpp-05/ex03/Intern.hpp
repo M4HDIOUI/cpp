@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:54:40 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/16 11:37:56 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/21 21:00:44 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 class AForm;
 
-class Intern : public AForm
+class Intern
 {
     public:
         Intern();

@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:13:26 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/12 05:24:01 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/21 21:05:11 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class AForm
         AForm(std::string name, bool is_signed, int sign_grade, int exec_grade);
         AForm(const AForm &instance);
         AForm &operator=(const AForm &instance);
-        ~AForm();
+        virtual ~AForm();
         std::string getName() const;
         bool getIsSigned() const;
         int getSignGrade() const;

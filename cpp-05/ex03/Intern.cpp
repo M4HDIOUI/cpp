@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 05:54:53 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/16 12:04:16 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/21 22:41:35 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ AForm* Intern::makeForm(std::string formName, std::string target)
 {
     int i;
     AForm* form;
-    std::string forms[] = {"Shrubbery", "Robotomy", "Presidential"};
+    std::string forms[] = {"Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
     AForm* (*formCreators[])(std::string target, std::string name) = {ShrubberyCreationForm::create, RobotomyRequestForm::create, PresidentialPardonForm::create};
 
     for (i = 0; i < 3; i++)

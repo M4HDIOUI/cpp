@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:18:36 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/20 21:23:51 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/21 21:15:07 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,11 @@ void AForm::beSigned(Bureaucrat &bureaucrat)
         this->_is_signed = true;
 }
 
+void AForm::setName(std::string name)
+{
+    this->_name = name;
+}
+
 const char* AForm::GradeTooHighException::what() const throw()
 {
     return "Grade too high";
@@ -119,4 +124,24 @@ std::ostream& operator<<(std::ostream& out, const AForm& form)
     out << "AForm sign grade: " << form.getSignGrade() << std::endl;
     out << "AForm exec grade: " << form.getExecGrade() << std::endl;
     return out;
+}
+
+void AForm::setIsSigned(bool is_signed)
+{
+    this->_is_signed = is_signed;
+}
+
+void AForm::setSignGrade(int sign_grade)
+{
+    this->_sign_grade = sign_grade;
+}
+
+void AForm::setExecGrade(int exec_grade)
+{
+    this->_exec_grade = exec_grade;
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+    return "Form not signed";
 }
