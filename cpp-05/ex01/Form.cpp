@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 01:18:36 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/20 03:36:49 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:32:39 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Form::Form() : _name("default")
 
 Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade) : _name(name)
 {
+    _is_signed = is_signed;
     if (sign_grade < 1)
     {
         throw GradeTooHighException();
