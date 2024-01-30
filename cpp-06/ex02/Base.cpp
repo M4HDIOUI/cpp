@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 04:38:43 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/27 04:50:31 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:11:49 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void identify(Base &p)
             }
             catch(const std::exception& e)
             {
-                std::cerr << e.what() << '\n';
+                std::cerr << e.what() << std::endl;
             }
         }
     }

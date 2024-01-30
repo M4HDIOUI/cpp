@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:23:30 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/28 18:28:02 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:39:31 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ ScalarConvert &ScalarConvert::operator=(ScalarConvert const &scalarConvert)
     return *this;
 }
 
+bool check(std::string str)
+{
+    if (str == "nan" || str == "nanf" || str == "-inf" || str == "+inf" || str == "-inff" || str == "+inff")
+        return true;
+    return false;
+}
+
 ScalarConvert::~ScalarConvert() {}
 #include <iomanip>
 void ScalarConvert::convert(std::string str)
@@ -35,7 +42,14 @@ void ScalarConvert::convert(std::string str)
     char *end;
     double res =  strtod(str.c_str(), &end);
     (void)res;
-    if (str.length() == 1 && !isdigit(str[0]))
+    if (check(str) == true)
+    {
+        std::cout << "char: " << "impossible" << std::endl;
+        std::cout << "int: " << "imposible" << std::endl;
+        std::cout << "float: " << str << "f" << std::endl;
+        std::cout << "double: " << str << std::endl;
+    }
+    else if (str.length() == 1 && !isdigit(str[0]))
     {
         std::cout << "char: '" << str[0] << "'" << std::endl;
         std::cout << "int: " << static_cast<int>(*str.c_str()) << std::endl;

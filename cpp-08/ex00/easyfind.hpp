@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 19:03:13 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/30 20:01:28 by omahdiou         ###   ########.fr       */
+/*   Created: 2024/01/30 11:37:29 by omahdiou          #+#    #+#             */
+/*   Updated: 2024/01/30 11:47:49 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 
-void print(int const &n)
+# include <algorithm>
+# include <iostream>
+# include <vector>
+
+template<typename T>
+typename T::iterator easyfind(T &container, int n)
 {
-    std::cout << n << std::endl;
+    return std::find(container.begin(), container.end(), n);
 }
 
-int main(void)
-{
-    int arr[] = {1, 2, 3, 4, 5};
-    iter(arr, 5, print);
-    return 0;
-}
+#endif

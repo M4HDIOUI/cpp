@@ -1,10 +1,10 @@
-NAME = iter
+NAME = easyfind
 
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-HDR = iter.hpp
+HDR = easyfind.hpp
 
 SRCS = main.cpp
 
