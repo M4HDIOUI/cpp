@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:57:55 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/31 11:45:38 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/31 13:04:58 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ template <typename T>
 Array<T>::Array(size_t len)
 {
     this->arr = new T[len];
+    memset(this->arr, 0, len   * sizeof(T);
     this->len = len;
 }
 
@@ -57,6 +58,7 @@ Array<T> &Array<T>::operator=(Array const &array)
 {
     if (this != &array)
     {
+        delete[] arr;
         this->arr = new T[array.len];
         this->len = array.len;
         for (size_t i = 0; i < array.len; i++)
