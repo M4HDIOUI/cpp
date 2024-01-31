@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:57:55 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/28 19:12:33 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:45:38 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ class Array
 {
     private:
         T *arr;
-        int len;
+        size_t len;
     public:
         Array();
-        Array(unsigned int len);
+        Array(size_t len);
         Array(Array const &array);
         Array &operator=(Array const &array);
         ~Array();
 
-        T &operator[](int index);
-        int size(void) const;
+        T &operator[](size_t index);
+        size_t size(void) const;
 };
 
 template <typename T>
@@ -40,7 +40,7 @@ Array<T>::Array()
 }
 
 template <typename T>
-Array<T>::Array(unsigned int len)
+Array<T>::Array(size_t len)
 {
     this->arr = new T[len];
     this->len = len;
@@ -59,7 +59,7 @@ Array<T> &Array<T>::operator=(Array const &array)
     {
         this->arr = new T[array.len];
         this->len = array.len;
-        for (int i = 0; i < array.len; i++)
+        for (size_t i = 0; i < array.len; i++)
         {
             this->arr[i] = array.arr[i];
         }
@@ -74,7 +74,7 @@ Array<T>::~Array()
 }
 
 template <typename T>
-T &Array<T>::operator[](int index)
+T &Array<T>::operator[](size_t index)
 {
     if (index >= this->len)
         throw std::exception();
@@ -82,7 +82,7 @@ T &Array<T>::operator[](int index)
 }
 
 template <typename T>
-int Array<T>::size(void) const
+size_t Array<T>::size(void) const
 {
     return this->len;
 }

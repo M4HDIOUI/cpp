@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:52:18 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/01/30 19:58:34 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:15:45 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 
 template <typename T>
-void iter(T *arr, int len, void (*f)(T const &))
+void iter(T *arr, int len, void (*f)(T&))
 {
     for (int i = 0; i < len; i++)
     {
