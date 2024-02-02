@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   MitanStack.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 18:52:18 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/02 12:18:05 by omahdiou         ###   ########.fr       */
+/*   Created: 2024/02/01 05:56:00 by omahdiou          #+#    #+#             */
+/*   Updated: 2024/02/01 09:39:57 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-# define ITER_HPP
+#ifndef MITANSTACK_HPP
+# define MITANSTACK_HPP
 
 # include <iostream>
 
 template <typename T>
-void iter(T *arr, int len, void (*f)(T&))
-{
-    for (int i = 0; i < len; i++)
-    {
-        f(arr[i]);
-    }
-}
+class MitanStack {
+    private:
+        T	*_stack;
+        int	_size;
+        int	_capacity;
+    public:
+        MitanStack();
+        MitanStack(int n);
+        MitanStack(MitanStack const & src);
+        MitanStack &operator=(MitanStack const & rhs);
+        ~MitanStack();
 
-template <typename T>
-void iter(T *arr, int len, void (*f)(const T&))
-{
-    for (int i = 0; i < len; i++)
-    {
-        f(arr[i]);
-    }
-}
+        void push(T n);
+        void pop();
+        T top();
+        int size();
+        bool empty();
+        int capacity();
+};
 
 #endif
