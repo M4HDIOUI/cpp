@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:17:44 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/01 05:36:18 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:43:47 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <iostream>
 # include <vector>
-# include <algorithm>
-# include <climits>
 
 class span {
     private:

@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:37:29 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/01 05:32:51 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:14:58 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typename T::iterator easyfind(T &container, int n)
     if (it == container.end())
         throw std::exception();
     return it;
-    // return std::find(container.begin(), container.end(), n);
 }
 
 #endif
