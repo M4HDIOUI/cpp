@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 16:40:31 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 15:29:36 by omahdiou         ###   ########.fr       */
+/*   Created: 2024/02/07 15:33:15 by omahdiou          #+#    #+#             */
+/*   Updated: 2024/02/07 15:54:21 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#ifndef RPN_HPP
+# define RPN_HPP
 
-int main(int ac, char **av)
+#include <iostream>
+#include <stack>
+#include <sstream>
+
+class RPN
 {
-    if (ac != 2)
-    {
-        std::cout << "Usage: ./bitcoin [file]" << std::endl;
-        return 1;
-    }
-    BitcoinExchange bitcoinExchange;
-    bitcoinExchange.parseFile(av[1]);
-    return 0;
-}
+    private:
+        std::stack<int> stack;
+        int result;
+    public:
+        RPN(std::string str);
+        RPN(RPN const &copy);
+        RPN& operator=(RPN const &rpn);
+        ~RPN();
+};
+
+#endif

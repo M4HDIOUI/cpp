@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:40:24 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 12:21:37 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:30:40 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ BitcoinExchange::BitcoinExchange()
     {
         std::cout << "Unable to open file" << std::endl;
     }
+    this->data.insert(std::pair<std::string, float>(line.substr(0, line.find(",")), ft_stof(line.substr(line.find(",") + 1))));
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &copy)
@@ -57,16 +58,11 @@ BitcoinExchange::~BitcoinExchange()
 }
 
 
-void date_is_valid(std::string date)
+int date_is_valid(std::string date)
 {
     std::string year;
     std::string month;
     std::string day;
-    // printf("date: |%s|\n", date.c_str());
-    // if (date[4] != '-' || date[7] != '-' || date.length() != 10)
-    // {
-    //     std::cout << "bad input" << std::endl;
-    // }
     int pos = date.find("-");
     
     if (date.find("-") != std::string::npos)
@@ -75,31 +71,54 @@ void date_is_valid(std::string date)
         month = date.substr(pos + 1, date.substr(pos + 1).find("-"));
         pos = date.find("-" , pos + 1);
         day = date.substr(pos + 1, date.substr(pos + 1).find("-"));
-        std::cout << "year: " << year << std::endl;
-        std::cout << "month: " << month << std::endl;
-        std::cout << "day: " << day << std::endl;
     }
     else
     {
-        std::cout << "bad input......." << std::endl;
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
     }
     if (year.length() != 4 || month.length() != 2 || day.length() != 2)
     {
-        std::cout << "bad input33333" << std::endl;
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
     }
+    if (ft_stof(year) < 2000 || ft_stof(year) > 2024)
+    {
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
+    }
+    if (ft_stof(month) < 1 || ft_stof(month) > 12)
+    {
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
+    }
+    if (ft_stof(day) < 1 || ft_stof(day) > 31)
+    {
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
+    }
+    if (ft_stof(month) == 2 && ft_stof(day) > 29)
+    { 
+        std::cout << "Error: bad input => " << date << std::endl;
+        return (1);
+    }
+    return (0);
 }
 
-void price_is_valid(std::string price)
+int price_is_valid(std::string price)
 {
     float price_float = ft_stof(price);
     if (price_float < 0)
     {
-        std::cout << "not positive number" << std::endl;
+        std::cout << "Error: not positive number" << std::endl;
+        return (1);
     }
     if (price_float > 100000)
     {
-        std::cout << "too big number" << std::endl;
+        std::cout << "Error: too big number" << std::endl;
+        return (1);
     }
+    return (0);
 }
 
 void BitcoinExchange::parseFile(std::string file)
@@ -113,17 +132,25 @@ void BitcoinExchange::parseFile(std::string file)
     {
         while(std::getline(fileStream, line))
         {
-            if (line.find("|") != std::string::npos)
+            if (line.find("|") == std::string::npos)
             {
-                date = line.substr(0, line.find("|") - 1);
-                price = line.substr(line.find("|") + 1, line.length() - 1);
-                date_is_valid(date);
-                price_is_valid(price);
+                std::cout << "Error: bad input => " << line << std::endl;
+                continue;
             }
             else
             {
-                std::cout << "bad input---------" << std::endl;
+                date = line.substr(0, line.find("|") - 1);
+                price = line.substr(line.find("|") + 1, line.length() - 1);
+                if (price_is_valid(price) == 1 || date_is_valid(date) == 1)
+                    continue;
             }
+            std::map<std::string, float>::iterator it;
+            it = data.lower_bound(date);
+            std::cout << it->first << " => " << price << " = " << it->second * ft_stof(price) << std::endl;
         }
+    }
+    else 
+    {
+        std::cout << "Unable to open file" << std::endl;
     }
 }

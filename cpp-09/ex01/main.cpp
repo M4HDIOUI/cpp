@@ -5,21 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 16:40:31 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 15:29:36 by omahdiou         ###   ########.fr       */
+/*   Created: 2024/02/07 15:37:56 by omahdiou          #+#    #+#             */
+/*   Updated: 2024/02/07 15:51:41 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 
 int main(int ac, char **av)
 {
     if (ac != 2)
     {
-        std::cout << "Usage: ./bitcoin [file]" << std::endl;
-        return 1;
+        std::cout << "Usage: ./rpn \"[RPN expression]\"" << std::endl;
+        return (1);
     }
-    BitcoinExchange bitcoinExchange;
-    bitcoinExchange.parseFile(av[1]);
-    return 0;
+    RPN rpn(av[1]);
+    return (0);
 }
