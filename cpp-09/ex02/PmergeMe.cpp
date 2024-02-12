@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:29:33 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/09 19:33:53 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:42:32 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,6 @@ PmergeMe::PmergeMe(char **str) {
     size_t j = 0;
     while (str[i])
     {
-        // if (std::atoi(str[i]) < 0 || std::atoi(str[i]) > 100000)
-        // {
-        //     std::cout << "Error : bad argument" << std::endl;
-        //     return ;
-        // }
-        // while(str[i][j])
-        // {
-        //     if (isdigit(str[i][j]) == 0)
-        //     {
-        //         std::cout << "Error : bad argument" << std::endl;
-        //         return ;
-        //     }
-        //     j++;
-        // }
         vector.push_back(std::atoi(str[i]));
         i++;
     }
@@ -86,21 +72,13 @@ PmergeMe::PmergeMe(char **str) {
         j++;
     }
     sort_vector(tmp, 0);
-    // std::vector<std::pair<int, int> >::iterator itb = tmp.begin();
-    // std::vector<std::pair<int, int> >::iterator ite4 = tmp.end();
-    // while (itb != ite4)
-    // {
-    //     std::cout << itb->first << " " << itb->second << std::endl;
-    //     itb++;
-    // }
     std::vector<int> pend;
     std::vector<int> main;
     main.push_back(tmp[0].second);
     for (size_t k = 0; k < tmp.size(); k++)
         main.push_back(tmp[k].first);
-    for (size_t k = 0; k < tmp.size() - 1; k++)
-        pend.push_back(tmp[k + 1].second);
-    // int size = main.size() ;
+    for (size_t k = 0; k <= tmp.size() - 1; k++)
+        pend.push_back(tmp[k].second);
     std::vector<int> jac_num = generate_jacob_number(pend.size() + 1);
     int first;
     int last;
@@ -110,7 +88,7 @@ PmergeMe::PmergeMe(char **str) {
         last = jac_num[k + 1];
         while (first < last)
         {
-            if ((int)pend.size() <= last)
+            if ((int)pend.size() < last)
                 last = pend.size();
             if(last <= first)
                 break;
@@ -118,7 +96,7 @@ PmergeMe::PmergeMe(char **str) {
             main.insert(it, pend[last - 1]);
             last--;
         }
-        if (main.size() > pend.size() + main.size() - 1)
+        if (main.size() >= pend.size() + main.size() - 1)
             break;
     }
     
