@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:33:15 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 15:54:21 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:52:49 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <stack>
 #include <sstream>
+#include <exception>
 
 class RPN
 {
@@ -23,7 +24,7 @@ class RPN
         std::stack<int> stack;
         int result;
     public:
-        RPN(std::string str);
+        RPN(char *str);
         RPN(RPN const &copy);
         RPN& operator=(RPN const &rpn);
         ~RPN();

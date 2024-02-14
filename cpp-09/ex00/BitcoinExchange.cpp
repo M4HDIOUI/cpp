@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:40:24 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 15:30:40 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:00:02 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,29 @@ int date_is_valid(std::string date)
     return (0);
 }
 
-int price_is_valid(std::string price)
+float price_is_valid(std::string price)
 {
+    int i = 0;
+    while(price[i] == ' ')
+        i++;
+    if (price[i] == '.')
+    {
+        std::cout << "Error: bad input" << std::endl;
+        return 1;
+    }
+    std::cout << "|" << price << "|" << std::endl;
     float price_float = ft_stof(price);
     if (price_float < 0)
     {
         std::cout << "Error: not positive number" << std::endl;
         return (1);
     }
-    if (price_float > 100000)
+    if (price_float > 1000)
     {
         std::cout << "Error: too big number" << std::endl;
         return (1);
     }
-    return (0);
+    return (price_float);
 }
 
 void BitcoinExchange::parseFile(std::string file)
@@ -127,26 +136,41 @@ void BitcoinExchange::parseFile(std::string file)
     std::string line;
     std::string date;
     std::string price;
+    float price_f;
     std::getline(fileStream, line);
     if (fileStream.is_open())
     {
         while(std::getline(fileStream, line))
         {
-            if (line.find("|") == std::string::npos)
+            if (line.empty())
+            {
+                continue;
+            }
+            // std::string *arr;
+            // arr = ;
+            // printf("%s\n", line.c_str());
+            size_t pos = line.find("|");
+            if (pos == std::string::npos)
             {
                 std::cout << "Error: bad input => " << line << std::endl;
                 continue;
             }
-            else
+            else 
             {
                 date = line.substr(0, line.find("|") - 1);
-                price = line.substr(line.find("|") + 1, line.length() - 1);
-                if (price_is_valid(price) == 1 || date_is_valid(date) == 1)
+                price = line.substr(line.find("|") + 2, line.length() - 1);
+                if (price.empty())
+                {
+                    std::cout << "Error: bad input => " << line << std::endl;
+                    continue;
+                }
+                price_f = price_is_valid(price);
+                if (price_f == 1 || date_is_valid(date) == 1)
                     continue;
             }
             std::map<std::string, float>::iterator it;
             it = data.lower_bound(date);
-            std::cout << it->first << " => " << price << " = " << it->second * ft_stof(price) << std::endl;
+            std::cout << date << " => " << price_f << " = " << it->second * price_f << std::fixed << std::setprecision(2) << std::endl;
         }
     }
     else 

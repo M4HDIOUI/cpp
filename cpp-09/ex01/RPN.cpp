@@ -6,22 +6,25 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:37:59 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/07 16:05:15 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:04:15 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN(std::string str)
+RPN::RPN(char *str)
 {
     std::string token;
     std::stringstream ss(str);
     while (std::getline(ss, token, ' '))
     {
-        if (std::stoi(token) > 10)
+        if (token != "+" && token != "-" && token != "*" && token != "/")
         {
-            std::cout << "Error: number too big" << std::endl;
-            return ;
+                if (std::stoi(token) > 10)
+                {
+                    std::cout << "Error: number too big" << std::endl;
+                    return ;
+                }
         }
         if (token == "+" || token == "-" || token == "*" || token == "/")
         {
@@ -45,9 +48,8 @@ RPN::RPN(std::string str)
         }
         else
         {
-            this->stack.push(std::stoi(token));
+                this->stack.push(std::stoi(token));
         }
-        std::cout << stack.top() << "here"<< std::endl;
     }
     if (this->stack.size() != 1)
     {
