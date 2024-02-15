@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:29:33 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/14 18:24:08 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:24:52 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,33 +234,25 @@ void PmergeMe::print_time() {
     std::cout << "Time to process a range of " << len << " elements with std::deque : " << deque_time << "us" << std::endl;
 }
 
-int parse(char **str)
-{
-    int i = 0;
-    int j = 0;
-    while(str[i])
-    {
+int check(char **str) {
+    for (int i = 1; str[i]; ++i) {
         if (std::atoi(str[i]) < 0 || std::atoi(str[i]) > 100000)
         {
             std::cout << "Error" << std::endl;
             return 1;
         }
-        while(str[i][j])
-        {
-            if (isdigit(str[i][j]) == 0)
-            {
+        for (int j = 0; str[i][j] != '\0'; ++j) {
+            if (!isdigit(str[i][j])) {
                 std::cout << "Error" << std::endl;
                 return 1;
             }
-            j++;
         }
-        i++;
     }
     return 0;
 }
 
 PmergeMe::PmergeMe(char **str) {
-    if(parse(str) == 1)
+    if(check(str) == 1)
         return;
     deque_sort(str);
     vector_sort(str);

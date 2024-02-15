@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:37:59 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/14 15:04:15 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:50:31 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ RPN::RPN(char *str)
             else if (token == "*")
                 this->stack.push(a * b);
             else if (token == "/")
+            {
+                if (a == 0 || b == 0)
+                    throw std::exception();
                 this->stack.push(a / b);
+            }
         }
         else
         {

@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:40:24 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/14 18:00:02 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:55:10 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ float price_is_valid(std::string price)
         std::cout << "Error: bad input" << std::endl;
         return 1;
     }
-    std::cout << "|" << price << "|" << std::endl;
     float price_float = ft_stof(price);
     if (price_float < 0)
     {
@@ -146,9 +145,6 @@ void BitcoinExchange::parseFile(std::string file)
             {
                 continue;
             }
-            // std::string *arr;
-            // arr = ;
-            // printf("%s\n", line.c_str());
             size_t pos = line.find("|");
             if (pos == std::string::npos)
             {
