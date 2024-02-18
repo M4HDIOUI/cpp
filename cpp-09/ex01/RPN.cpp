@@ -6,7 +6,7 @@
 /*   By: omahdiou <omahdiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 15:37:59 by omahdiou          #+#    #+#             */
-/*   Updated: 2024/02/15 16:50:31 by omahdiou         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:13:13 by omahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@ RPN::RPN(char *str)
             int b = this->stack.top();
             this->stack.pop();
             if (token == "+")
-                this->stack.push(a + b);
+                this->stack.push(b + a);
             else if (token == "-")
                 this->stack.push(b - a);
             else if (token == "*")
-                this->stack.push(a * b);
+                this->stack.push(b * a);
             else if (token == "/")
             {
                 if (a == 0 || b == 0)
                     throw std::exception();
-                this->stack.push(a / b);
+                this->stack.push(b / a);
             }
         }
         else
         {
                 this->stack.push(std::stoi(token));
         }
+        printf("%d\n", stack.top());
     }
     if (this->stack.size() != 1)
     {
